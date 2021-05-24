@@ -1,0 +1,244 @@
+<!DOCTYPE html><html lang="zh-Hans" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PostEffects3 | Xhhfp</title><meta name="keywords" content="图形学基础"><meta name="author" content="xhhfp"><meta name="copyright" content="xhhfp"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="学习了一些屏幕后处理效果后的一些总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PostEffects3">
+<meta property="og:url" content="http://example.com/2021/05/24/PostEffects3/index.html">
+<meta property="og:site_name" content="Xhhfp">
+<meta property="og:description" content="学习了一些屏幕后处理效果后的一些总结">
+<meta property="og:locale">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2021-05-24T08:21:28.000Z">
+<meta property="article:modified_time" content="2021-05-24T09:38:38.762Z">
+<meta property="article:author" content="xhhfp">
+<meta property="article:tag" content="图形学基础">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/05/24/PostEffects3/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-05-24 17:38:38'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/qiqi.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">12</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Xhhfp</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">PostEffects3</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-05-24T08:21:28.000Z" title="Created 2021-05-24 16:21:28">2021-05-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-05-24T09:38:38.762Z" title="Updated 2021-05-24 17:38:38">2021-05-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E5%9F%BA%E7%A1%80/">图形学基础</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="PostEffects3"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="Auto-Exposure"><a href="#Auto-Exposure" class="headerlink" title="Auto Exposure"></a>Auto Exposure</h2><p>​    自动曝光是指模拟人眼对于光线的调节和感知。人从暗处到亮处，瞳孔会逐渐缩小，视觉会有突然变亮然后逐渐变暗的感受，相反的，从亮处到暗处，瞳孔会逐渐变大，视觉会有突然变暗然后逐渐变暗的感受。为了模拟这一现象，需要通过曝光值来调整整个屏幕的亮暗，这个曝光值由当前屏幕的亮暗程度决定。要获取当前屏幕的亮暗情况的准确值，需要遍历屏幕的每个像素，获取每个像素的亮度取平均来获得平均亮度值，但是对于一个1920 * 1080分辨率的屏幕来说，每帧都需要进行1920 * 1080次GetPixel，如此庞大的CPU计算量显然会影响到帧率，即使是进行降采样获取近似亮度值也是治标不治本，因此需要将这部分计算转移到ComputeShader中，以下以Unity中预设的Auto Exposure功能来说明实现方案。</p>
+<p>​    首先说明下各个输入参数的含义，后续说明都会使用到</p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Filtering</td>
+<td>过滤区间</td>
+</tr>
+<tr>
+<td>Minimun(EV)</td>
+<td>最小平均亮度(对数形式）</td>
+</tr>
+<tr>
+<td>Maximun(EV)</td>
+<td>最大平均亮度(对数形式)</td>
+</tr>
+<tr>
+<td>Exposure Compensation</td>
+<td>曝光补偿值</td>
+</tr>
+<tr>
+<td>Type</td>
+<td>Progressive为模拟人眼渐变，Fixed为直接变化为计算值</td>
+</tr>
+<tr>
+<td>Speed Up</td>
+<td>亮度下降速率，模拟人眼适应光亮的速度</td>
+</tr>
+<tr>
+<td>Speed Down</td>
+<td>亮度上升速率，模拟人眼适应黑暗的速度</td>
+</tr>
+</tbody></table>
+<p>​    由于屏幕中一些亮度极大的像素会影响屏幕的平均亮度，需要过滤一部分像素，为了方便过滤，屏幕中像素的亮度信息是通过直方图 (Histogram)来进行统计的，直方图的取值范围为2^-9到2^9的亮度区间，亮度在实际存储中使用了对数方式，即[-9,9]的亮度区间，在这个区间中一个使用128个Bin来进行区分，每个桶的坐标对于其亮度值，而桶存储的是由屏幕图形采样获取到的权重值</p>
+<p>​    对于一个采样点，其处理代码如下：</p>
+<pre><code>    uint weight = 1u;
+    float2 sspos = ipos / _ScaleOffsetRes.zw;
+    //屏幕中心权重更高
+    #if USE_VIGNETTE_WEIGHTING
+    &#123;
+        float2 d = abs(sspos - (0.5).xx);
+        float vfactor = saturate(1.0 - dot(d, d));
+        vfactor *= vfactor;
+        weight = (uint)(64.0 * vfactor);
+    &#125;
+    #endif
+    //通过Bilinear来采样
+    float3 color = _Source.SampleLevel(sampler_LinearClamp, sspos, 0.0).xyz; // Bilinear downsample 2x
+    float luminance = Luminance(color);
+    float logLuminance = GetHistogramBinFromLuminance(luminance, _ScaleOffsetRes.xy);
+    //根据logLuminance后的值来确定在哪个桶
+    uint idx = (uint)(logLuminance * (HISTOGRAM_BINS - 1u));
+    //往对于桶增加权值
+    InterlockedAdd(gs_histogram[idx], weight);
+</code></pre>
+<hr>
+<p>可以看到，权重有两种模式，一种是按照与屏幕中心的距离来计算，一种是直接都取1，此时一个桶存储的权重和就是采样点的总个数，其中GetHistogramBinFromLuminance函数为 saturate(log2(value) * scaleOffset.x + scaleOffset.y)，其中scaleOffset.x 为 1/18, scaleOffset.y为 1/2,相当于取值[2^-9,2^9]的亮度 -&gt; [-9,9] * 1/18 + 0.5 -&gt; bin[0,1]，最后乘上(HISTOGRAM_BINS - 1u)即127就能获取到桶坐标，这样就能将所有采样点的亮度分配到128个桶中，虽然这样会是存储的亮度小于等于实际亮度，但是误差不会很大。</p>
+<p>此外，此处采样点也不代表所有的像素点，在过程中会进行降采样</p>
+<pre><code>//C#部分的启动函数
+cmd.DispatchCompute(compute, kernel,
+    Mathf.CeilToInt(scaleOffsetRes.z / 2f / threadX),
+    Mathf.CeilToInt(scaleOffsetRes.w / 2f / threadY),
+    1
+);
+//computeShader中的ipos计算
+float2 ipos = float2(dispatchThreadId) * 2.0;
+</code></pre>
+<p>从以上代码可以看出这边有进行1/4的降采样</p>
+<p>计算平均的亮度函数的相关函数如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">float GetAverageLuminance(StructuredBuffer&lt;uint&gt; buffer, float4 params, float maxHistogramValue, float2 scaleOffset)</span><br><span class="line">&#123;</span><br><span class="line">    uint i;</span><br><span class="line">    float totalSum &#x3D; 0.0;</span><br><span class="line"></span><br><span class="line">    UNITY_UNROLL</span><br><span class="line">    for (i &#x3D; 0; i &lt; HISTOGRAM_BINS; i++)</span><br><span class="line">    totalSum +&#x3D; GetBinValue(buffer, i, maxHistogramValue);</span><br><span class="line"></span><br><span class="line">    float4 filter &#x3D; float4(0.0, 0.0, totalSum * params.xy);</span><br><span class="line"></span><br><span class="line">    UNITY_UNROLL</span><br><span class="line">    for (i &#x3D; 0; i &lt; HISTOGRAM_BINS; i++)</span><br><span class="line">    FilterLuminance(buffer, i, maxHistogramValue, scaleOffset, filter);</span><br><span class="line"></span><br><span class="line">    return clamp(filter.x &#x2F; max(filter.y, EPSILON), params.z, params.w);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">void FilterLuminance(StructuredBuffer&lt;uint&gt; buffer, uint i, float maxHistogramValue, float2 scaleOffset, inout float4 filter)</span><br><span class="line">&#123;</span><br><span class="line">    float binValue &#x3D; GetBinValue(buffer, i, maxHistogramValue);</span><br><span class="line">    &#x2F;&#x2F;过滤暗区</span><br><span class="line">    float offset &#x3D; min(filter.z, binValue);</span><br><span class="line">    binValue -&#x3D; offset;</span><br><span class="line">    filter.zw -&#x3D; offset.xx;</span><br><span class="line">    &#x2F;&#x2F;过滤亮区</span><br><span class="line">    binValue &#x3D; min(filter.w, binValue);</span><br><span class="line">    filter.w -&#x3D; binValue;</span><br><span class="line">    float luminance &#x3D; GetLuminanceFromHistogramBin(float(i) &#x2F; float(HISTOGRAM_BINS), scaleOffset);</span><br><span class="line">    filter.xy +&#x3D; float2(luminance * binValue, binValue);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">float GetBinValue(StructuredBuffer&lt;uint&gt; buffer, uint index, float maxHistogramValue)</span><br><span class="line">&#123;</span><br><span class="line">    return float(buffer[index]) * maxHistogramValue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中GetBinValue就是对于桶的权重除以最大权重，在最终计算的时候实际上除以的最大权重会被抵消掉，这边要除最大权重很可能是在0-1区间内的浮点数计算效率更高，因此我们可以理解为获得的就是桶的权重。</p>
+<p>按这个思路走，初始的fileter中的xy分别存储的是总权重乘以过滤百分比下限与上限，在循环遍历每个桶执行FilterLuminance的过程中，会将低于下限的权重和高于上限的权重过滤掉，将过滤后的桶数据通过GetLuminanceFromHistogramBin进行桶到亮度的映射即GetHistogramBinFromLuminance的反向操作，最终亮度与权重的积的总和与权重总和相除即为平均亮度，最终的平均亮度会通过Clamp函数取在设置的最小和最大亮度之间</p>
+<p>在获得平均亮度后，我们需要通过平均亮度计算曝光值，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">float GetExposureMultiplier(float avgLuminance)</span><br><span class="line">&#123;</span><br><span class="line">    avgLuminance &#x3D; max(EPSILON, avgLuminance);</span><br><span class="line">    &#x2F;&#x2F;这段被注释的代码是依据亮度自动调整EC值</span><br><span class="line">    &#x2F;&#x2F;float keyValue &#x3D; 1.03 - (2.0 &#x2F; (2.0 + log2(avgLuminance + 1.0)));</span><br><span class="line">    float keyValue &#x3D; _Params2.z;</span><br><span class="line">    float exposure &#x3D; keyValue &#x2F; avgLuminance;</span><br><span class="line">    return exposure;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，Unity目前的方式就是将我们输入的曝光补偿值（EC)除以亮度来得到曝光值，获得曝光值后我们会根据选择的模式来调整最终返回的曝光值，如果是Progressive则进行插值，如果是Fixed的则直接返回</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#if PROGRESSIVE</span><br><span class="line">        float avgLuminance &#x3D; GetAverageLuminance(_HistogramBuffer, _Params1, maxValue, _ScaleOffsetRes.xy);</span><br><span class="line">        float exposure &#x3D; GetExposureMultiplier(avgLuminance);</span><br><span class="line">        float prevExposure &#x3D; _Source[uint2(0u, 0u)].x;</span><br><span class="line">        exposure &#x3D; InterpolateExposure(exposure, prevExposure);</span><br><span class="line">        _Destination[uint2(0u, 0u)].x &#x3D; exposure.x;</span><br><span class="line">#else</span><br><span class="line">        float avgLuminance &#x3D; GetAverageLuminance(_HistogramBuffer, _Params1, maxValue, _ScaleOffsetRes.xy);</span><br><span class="line">        float exposure &#x3D; GetExposureMultiplier(avgLuminance);</span><br><span class="line">        _Destination[uint2(0u, 0u)].x &#x3D; exposure.x;</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
+
+<p>插值代码如下，依据设置的SpeedUp和SpeedDown来调整变化速率</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">float InterpolateExposure(float newExposure, float oldExposure)</span><br><span class="line">&#123;</span><br><span class="line">    float delta &#x3D; newExposure - oldExposure;</span><br><span class="line">    float speed &#x3D; delta &gt; 0.0 ? _Params2.x : _Params2.y;</span><br><span class="line">    float exposure &#x3D; oldExposure + delta * (1.0 - exp2(-_Params2.w * speed));</span><br><span class="line">    return exposure;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最终exposure被存在了一张1x1的贴图的R通道中，在渲染时会将R通道的数值与当前颜色相乘</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">half autoExposure &#x3D; SAMPLE_TEXTURE2D(_AutoExposureTex, sampler_AutoExposureTex, uv).r;</span><br><span class="line"></span><br><span class="line">color.rgb *&#x3D; autoExposure;</span><br></pre></td></tr></table></figure>
+
+<p>FrameDebug中看到的实际流程如下：</p>
+<p>首先在每次计算之前情况一次数据，CS分配为 8组线程组，每组16个线程</p>
+<p><img src="https://raw.githubusercontent.com/xhhfp/Image-Host/master/AEFrameDebug1.jpg"></p>
+<p>然后遍历屏幕图像，CS分配60 X 34个线程组（1920 /2/16 = 60, 1080 /2/16 = 34) ，16 * 16个线程，获得直方图</p>
+<p><img src="https://raw.githubusercontent.com/xhhfp/Image-Host/master/AEFrameDebug2.jpg"></p>
+<p>最后统计直方图数据，渲染到1 * 1的贴图R通道</p>
+<p><img src="https://raw.githubusercontent.com/xhhfp/Image-Host/master/AEFrameDebug3.jpg"></p>
+<p>最终渲染时将RGB与该贴图R通道数值相乘即可</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">xhhfp</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2021/05/24/PostEffects3/">http://example.com/2021/05/24/PostEffects3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E5%9F%BA%E7%A1%80/">图形学基础</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2021/05/24/PostEffects2/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">PostEffects2</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2021/05/08/AnisotropicHair/" title="头发的各向异性高光"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-08</div><div class="title">头发的各向异性高光</div></div></a></div><div><a href="/2021/05/08/CartoonRenderPrimary/" title="卡通风格渲染-初级"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-08</div><div class="title">卡通风格渲染-初级</div></div></a></div><div><a href="/2021/04/22/GamaSpace/" title="伽马空间和线性空间"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-22</div><div class="title">伽马空间和线性空间</div></div></a></div><div><a href="/2021/04/12/LightSystem/" title="光照系统"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-12</div><div class="title">光照系统</div></div></a></div><div><a href="/2021/04/08/NormalMap/" title="法线贴图"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-08</div><div class="title">法线贴图</div></div></a></div><div><a href="/2021/05/24/PostEffects1/" title="屏幕后处理(一)"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-24</div><div class="title">屏幕后处理(一)</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/qiqi.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">xhhfp</div><div class="author-info__description">just to record my study trip</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">12</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Auto-Exposure"><span class="toc-number">1.</span> <span class="toc-text">Auto Exposure</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/05/24/PostEffects3/" title="PostEffects3"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PostEffects3"/></a><div class="content"><a class="title" href="/2021/05/24/PostEffects3/" title="PostEffects3">PostEffects3</a><time datetime="2021-05-24T08:21:28.000Z" title="Created 2021-05-24 16:21:28">2021-05-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/24/PostEffects2/" title="PostEffects2"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PostEffects2"/></a><div class="content"><a class="title" href="/2021/05/24/PostEffects2/" title="PostEffects2">PostEffects2</a><time datetime="2021-05-24T08:21:20.000Z" title="Created 2021-05-24 16:21:20">2021-05-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/24/PostEffects1/" title="屏幕后处理(一)"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="屏幕后处理(一)"/></a><div class="content"><a class="title" href="/2021/05/24/PostEffects1/" title="屏幕后处理(一)">屏幕后处理(一)</a><time datetime="2021-05-24T07:03:12.000Z" title="Created 2021-05-24 15:03:12">2021-05-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/08/AnisotropicHair/" title="头发的各向异性高光"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="头发的各向异性高光"/></a><div class="content"><a class="title" href="/2021/05/08/AnisotropicHair/" title="头发的各向异性高光">头发的各向异性高光</a><time datetime="2021-05-08T09:00:57.000Z" title="Created 2021-05-08 17:00:57">2021-05-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/08/CartoonRenderPrimary/" title="卡通风格渲染-初级"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="卡通风格渲染-初级"/></a><div class="content"><a class="title" href="/2021/05/08/CartoonRenderPrimary/" title="卡通风格渲染-初级">卡通风格渲染-初级</a><time datetime="2021-05-08T08:58:26.000Z" title="Created 2021-05-08 16:58:26">2021-05-08</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By xhhfp</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
