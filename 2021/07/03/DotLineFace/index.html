@@ -1,0 +1,341 @@
+<!DOCTYPE html><html lang="zh-Hans" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>顶点和面 | Xhhfp</title><meta name="keywords" content="图形学基础"><meta name="author" content="xhhfp"><meta name="copyright" content="xhhfp"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="学习了顶点和面相关知识后的总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="顶点和面">
+<meta property="og:url" content="http://example.com/2021/07/03/DotLineFace/index.html">
+<meta property="og:site_name" content="Xhhfp">
+<meta property="og:description" content="学习了顶点和面相关知识后的总结">
+<meta property="og:locale">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2021-07-03T06:45:46.000Z">
+<meta property="article:modified_time" content="2021-07-03T08:38:16.737Z">
+<meta property="article:author" content="xhhfp">
+<meta property="article:tag" content="图形学基础">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/07/03/DotLineFace/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-07-03 16:38:16'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/qiqi.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">15</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">4</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">4</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Xhhfp</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">顶点和面</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-07-03T06:45:46.000Z" title="Created 2021-07-03 14:45:46">2021-07-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-07-03T08:38:16.737Z" title="Updated 2021-07-03 16:38:16">2021-07-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E5%9F%BA%E7%A1%80/">图形学基础</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="顶点和面"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>​    物体的Mesh（网格)决定了物体的形体结构，其中包含的数据也是渲染物体的基本数据来源，Mesh包含的数据主要是顶点数据和片元数据，这边的片元又可以是点、线、可三角面，或是是其他多边形，在Unity中片元一般为三角面。顶点数据包含了顶点位置、UV、顶点法线、切线等信息，三角面包含了构成三角面的顶点数据。</p>
+<p>​    如下图所示，一个正方形有6个面，8个顶点，但是它有24份顶点数据，12个三角面。</p>
+<img src="https://raw.githubusercontent.com/xhhfp/Image-Host/master/CubeMesh.jpg" style="zoom:200%;" />    
+
+<p>​    那么为什么不是8份顶点数据呢，因为如果只有8份顶点数据，也就是每个顶点一个数据，那么一个顶点就只有一个法线，一个顶点法线被三个面共享的话。可以明显看到，正方形的顶点上的三个面的光照表现是截然不同的，也就是需要法线的突变，而一个顶点法线被三个面共享的话，这样三个面的法线数据会被插值，就会使一种平滑的光照表现，如下图，显然这种光照表现是不对的，因此至少需要24份顶点法线数据。此外，对于一个一个正方形的面，要自定义它的UV，至少需要4个顶点UV，因此，至少24份顶点UV数据。所以至少需要24份顶点数据。</p>
+<img src="https://raw.githubusercontent.com/xhhfp/Image-Host/master/CubeNormalUnify.jpg" style="zoom:200%;" />
+
+<p>​    理论上12个三角面，每个三角面三份顶点数据，应该是需要36份数据的。但是由于在同一个面上的两个三角面的共享顶点的顶点数据是完全相等的，因此为了减少计算量，就把这些完全相等的数据舍去了，每个面减掉2份，一共减掉12份，最终剩下24份顶点数据。</p>
+<hr>
+<p>​    根据我的测试可以得出以下结论：</p>
+<ol>
+<li>如果模型有m个顶点，n个三角面，则顶点数据最少有m份，最多有n*3份。</li>
+<li>顶点数据的数量，即Unity 里的 verts数，决定了进入顶点着色器的次数。</li>
+<li>顶点的法线、切线、uv等信息的不同都会导致顶点数据的增加。</li>
+<li>对于通过顶点所在三角面算出的顶点法线、切线数据，有可能会出现不同，但是最终形成几份顶点数据是不一定的。比如，在曲面上，顶点通过它的三角面算出了不同的法线，但最终会被通过一些平均算法，算出一个法线，形成一份顶点数据，但是如果是在曲面和其他面的边缘位置，则会将曲面上的片元算出一个平均法线，其他面再算出一个法线，形成两份顶点数据。</li>
+</ol>
+<p>对于第四点，需要举个例子进行特别说明，如下图的梯台，其中小黑球代表1份顶点数据，中黑球代表2份顶点数据，大黑球代表3份顶点数据，红线表示法线，绿线表示切线，该梯台一共有6 * 24 个顶点（6个圈，每个24个顶点），在曲面的上的顶点基本都是1份顶点数据，上下边缘为了表现边缘效果，需要两个不同的顶点法线，因此增加了24 * 2份顶点数据。此外，在曲面的一条线上，UV值发生了1-&gt;0的突变，因此1个顶点需要有两份顶点数据，又增加了6份顶点数据，并且这6份顶点数据所在的顶点在算切线的时候本身是有两个的切线的，其他曲面上的点在曲面上和法线一样进行了平均，但这边反正都因为UV分成两个了，干脆切线也就分成两份存了，反正不会多生成顶点数据。</p>
+<p>结合这个例子，可以看出，对于顶点法线和切线不同的时候，顶点数据到底该划分成多少份是有一定灵活性的。</p>
+<img src="https://raw.githubusercontent.com/xhhfp/Image-Host/master/LadderWay.jpg" />
+
+<hr>
+<p>接下来说明下顶点数据的切线，法线以及副切线的计算规则</p>
+<p>初始，我们有的数据是每份顶点数据的顶点位置、顶点UV值，以及每个三角面的三份顶点数据</p>
+<p>第一步，根据三个顶点位置信息和平面方程，我们可以算出三角面面法线，代码如下：</p>
+<pre><code>public Vector3 Cal_Normal(Vector3 v1, Vector3 v2, Vector3 v3)
+&#123;
+    //平面方程: na * (x – n1) + nb * (y – n2) + nc * (z – n3) = 0 ;
+    float na = (v2.y - v1.y) * (v3.z - v1.z) - (v2.z - v1.z) * (v3.y - v1.y);
+    float nb = (v2.z - v1.z) * (v3.x - v1.x) - (v2.x - v1.x) * (v3.z - v1.z);
+    float nc = (v2.x - v1.x) * (v3.y - v1.y) - (v2.y - v1.y) * (v3.x - v1.x);
+
+    return Vector3.Normalize(new Vector3(na, nb, nc));
+&#125;
+</code></pre>
+<p>第二步，根据三个顶点位置信息和UV信息，我们可以算出三角面的切线，</p>
+<p>切线的数学定义实际是三角形模型空间坐标对于U的偏导数</p>
+<img src="https://raw.githubusercontent.com/xhhfp/Image-Host/master/TBNCal1.jpg" />
+
+<p>其公式推倒过程如下</p>
+<img src="https://raw.githubusercontent.com/xhhfp/Image-Host/master/TBNCal2.jpg" />
+
+<p>代码如下：</p>
+<pre><code>public Vector4 Cal_Tangent(Vector3 v1, Vector3 v2, Vector3 v3, Vector2 uv1, Vector2 uv2, Vector2 uv3)
+&#123;
+    Vector3 e1 = v2 - v1;
+    Vector3 e2 = v3 - v1;
+    Vector2 uvo1 = uv2 - uv1;
+    Vector2 uvo2 = uv3 - uv1;
+    float hanglieshi = 1f / (uvo1.x * uvo2.y - uvo2.x * uvo1.y);
+    Vector3 juzhencheng = new Vector3(uvo2.y * e1.x + -1f * uvo1.y * e2.x, uvo2.y * e1.y + -1f * uvo1.y * e2.y, uvo2.y * e1.z + -1f * uvo1.y * e2.z);
+    Vector3 t = Vector3.Normalize(hanglieshi * juzhencheng);
+    //-1代表切线方向
+    return new Vector4(t.x, t.y, t.z, -1f);
+&#125;
+</code></pre>
+<p>第三步，顶点根据它所在三角面的面法线和切线得出顶点法线和切线，这边算法应该有多种，这边都采用直接相加标准化</p>
+<p>代码如下：</p>
+<pre><code>public Vector3 Cal_Normal(List&lt;MyFace&gt; faceList)
+&#123;
+    Vector3 normal = new Vector3(0, 0, 0);
+    foreach(MyFace face in faceList)
+    &#123;
+        if(face.ContainVert(this)) normal += face.normal;
+    &#125;
+    return Vector3.Normalize(normal);
+&#125;
+
+public Vector4 Cal_Tangent(List&lt;MyFace&gt; faceList)
+&#123;
+    Vector3 tangent = new Vector3(0, 0, 0);
+    foreach (MyFace face in faceList)
+    &#123;
+        if (face.ContainVert(this))  tangent += new Vector3(face.tangent.x,face.tangent.y,face.tangent.z);
+    &#125;
+    tangent = Vector3.Normalize(tangent);
+    return new Vector4(tangent.x, tangent.y, tangent.z, -1);
+&#125;
+</code></pre>
+<p>根据以上思路，我们模拟平面Mesh构建过程，自定义顶点坐标，UV来计算顶点法线和切线来验证结果验证性，</p>
+<p>代码如下</p>
+<pre><code>public class createPlane: MonoBehaviour
+&#123;
+    // Start is called before the first frame update
+    public Material mat;
+    public Texture2D tex;
+    int vertNum = 9;
+    int trangleNum = 8;
+    List&lt;MyVert&gt; vertList;
+    List&lt;MyFace&gt; faceList;
+    void Start()
+    &#123;
+        create();
+    &#125;
+
+    void create()
+    &#123;
+        GameObject obj = new GameObject(&quot;plane&quot;);
+        MeshFilter mf = obj.AddComponent&lt;MeshFilter&gt;();
+        MeshRenderer mr = obj.AddComponent&lt;MeshRenderer&gt;();
+
+        Vector3[] vertices = new Vector3[vertNum];
+        Vector3[] normals = new Vector3[vertNum];
+        Vector4[] tangents = new Vector4[vertNum];
+        Vector2[] uvs = new Vector2[vertNum];
+
+        int[] triangles = new int[trangleNum * 3];
+
+        vertList = new List&lt;MyVert&gt;();
+        faceList = new List&lt;MyFace&gt;();
+
+        //set vert pos and uv
+        for (int i = 0;i &lt; 3; ++i)
+        &#123;
+            for(int j = 0;j &lt; 3; ++j)
+            &#123;
+                MyVert vert = new MyVert(i * 3 + j);
+                vert.pos = new Vector3(j * 1f, i, 0f);
+                vert.uv = new Vector2(j * 0.5f, i * 0.5f);
+                vertList.Add(vert);
+            &#125;
+        &#125;
+        //vertList[4].uv= new Vector2(0.25f, 0.75f);
+        //set trangle
+        int currentCount = 0;
+
+        triangles[currentCount++] = 0;
+        triangles[currentCount++] = 3;
+        triangles[currentCount++] = 4;
+
+        triangles[currentCount++] = 0;
+        triangles[currentCount++] = 4;
+        triangles[currentCount++] = 1;
+
+        triangles[currentCount++] = 1;
+        triangles[currentCount++] = 4;
+        triangles[currentCount++] = 5;
+
+        triangles[currentCount++] = 1;
+        triangles[currentCount++] = 5;
+        triangles[currentCount++] = 2;
+
+        triangles[currentCount++] = 3;
+        triangles[currentCount++] = 6;
+        triangles[currentCount++] = 7;
+
+        triangles[currentCount++] = 3;
+        triangles[currentCount++] = 7;
+        triangles[currentCount++] = 4;
+
+        triangles[currentCount++] = 4;
+        triangles[currentCount++] = 7;
+        triangles[currentCount++] = 8;
+
+        triangles[currentCount++] = 4;
+        triangles[currentCount++] = 8;
+        triangles[currentCount++] = 5;
+
+        //get trangle
+
+        for (int i = 0;i &lt; trangleNum; i++)
+        &#123;
+            MyVert[] verts = &#123; vertList[triangles[i * 3]], vertList[triangles[i * 3 + 1]], vertList[triangles[i * 3 + 2]] &#125;;
+            MyFace face = new MyFace(i, verts);
+            face.Cal_Face_NT();
+            faceList.Add(face);
+        &#125;
+
+        //get vert normal tangent
+        for(int i =0;i &lt; vertNum;i++)
+        &#123;
+            vertList[i].Cal_Face_NT(faceList);
+            vertices[i] = vertList[i].pos;
+            uvs[i] = vertList[i].uv;
+            normals[i] = vertList[i].normal;
+            tangents[i] = vertList[i].tangent;
+        &#125;
+        mf.mesh.vertices = vertices;
+        mf.mesh.triangles = triangles;
+        mf.mesh.uv = uvs;
+        mf.mesh.normals = normals;
+        mf.mesh.tangents = tangents;
+        mr.material = new Material(Shader.Find(&quot;Standard&quot;));
+        if (tex)
+        &#123;
+            mr.material.SetTexture(&quot;_MainTex&quot;, tex);
+        &#125;
+
+        obj.transform.position = new Vector3(0, 0, 0);
+        obj.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        obj.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+
+        obj.AddComponent&lt;MeshTBN&gt;();
+    &#125;
+&#125;
+</code></pre>
+<p>结果如下图</p>
+<img src="https://raw.githubusercontent.com/xhhfp/Image-Host/master/TBNCal3.jpg" />
+
+<p>左边是初始的计算结果，右边是将中心点的uv调整后的计算结果，经过比对和Unity中的TBN计算结果一致</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">xhhfp</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2021/07/03/DotLineFace/">http://example.com/2021/07/03/DotLineFace/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E5%9F%BA%E7%A1%80/">图形学基础</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2021/06/15/PostEffects4/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">屏幕后处理(四)</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2021/05/08/AnisotropicHair/" title="头发的各向异性高光"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-08</div><div class="title">头发的各向异性高光</div></div></a></div><div><a href="/2021/05/08/CartoonRenderPrimary/" title="卡通风格渲染-初级"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-08</div><div class="title">卡通风格渲染-初级</div></div></a></div><div><a href="/2021/04/08/NormalMap/" title="法线贴图"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-08</div><div class="title">法线贴图</div></div></a></div><div><a href="/2021/05/24/PostEffects1/" title="屏幕后处理(一)"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-24</div><div class="title">屏幕后处理(一)</div></div></a></div><div><a href="/2021/04/22/GamaSpace/" title="伽马空间和线性空间"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-22</div><div class="title">伽马空间和线性空间</div></div></a></div><div><a href="/2021/05/24/PostEffects2/" title="屏幕后处理(二)"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-24</div><div class="title">屏幕后处理(二)</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/qiqi.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">xhhfp</div><div class="author-info__description">just to record my study trip</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">15</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">4</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">4</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/07/03/DotLineFace/" title="顶点和面"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="顶点和面"/></a><div class="content"><a class="title" href="/2021/07/03/DotLineFace/" title="顶点和面">顶点和面</a><time datetime="2021-07-03T06:45:46.000Z" title="Created 2021-07-03 14:45:46">2021-07-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/06/15/PostEffects4/" title="屏幕后处理(四)"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="屏幕后处理(四)"/></a><div class="content"><a class="title" href="/2021/06/15/PostEffects4/" title="屏幕后处理(四)">屏幕后处理(四)</a><time datetime="2021-06-15T06:03:23.000Z" title="Created 2021-06-15 14:03:23">2021-06-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/24/ComputeShader/" title="ComputeShader"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ComputeShader"/></a><div class="content"><a class="title" href="/2021/05/24/ComputeShader/" title="ComputeShader">ComputeShader</a><time datetime="2021-05-24T09:41:01.000Z" title="Created 2021-05-24 17:41:01">2021-05-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/24/PostEffects3/" title="屏幕后处理(三)"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="屏幕后处理(三)"/></a><div class="content"><a class="title" href="/2021/05/24/PostEffects3/" title="屏幕后处理(三)">屏幕后处理(三)</a><time datetime="2021-05-24T08:21:28.000Z" title="Created 2021-05-24 16:21:28">2021-05-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/24/PostEffects2/" title="屏幕后处理(二)"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="屏幕后处理(二)"/></a><div class="content"><a class="title" href="/2021/05/24/PostEffects2/" title="屏幕后处理(二)">屏幕后处理(二)</a><time datetime="2021-05-24T08:21:20.000Z" title="Created 2021-05-24 16:21:20">2021-05-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By xhhfp</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
